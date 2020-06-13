@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TIC TAC TOE</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This website provides you to play TIC TAC TOE game in Play Two Player Game and Play With System options.It is developed by Y.V.RAJKUMAR using HTML,CSS,Javascript and Bootstrap."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <style>
+.multi-button {
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: 0 2rem 1rem -1rem #123;
+}
+
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  font: 2rem/1 monospace;
+  margin: 0;
+  overflow: hidden;
+  padding: 1rem 1.25rem;
+  position: relative;
+  top: 0;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+  background-color: #f561ab;
+  background-image: radial-gradient(ellipse at top right, #f56161, rgba(245, 97, 171, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c90d6b;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:hover, button:focus {
+  outline: none;
+  background-color: #f5f561;
+  background-image: radial-gradient(ellipse at top right, #abf561, rgba(245, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c9c90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+button:first-child, button:last-child {
+  border-radius: 1rem;
+}
+button:first-child {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+button:nth-child(2) {
+  background-color: #f56161;
+  background-image: radial-gradient(ellipse at top right, #f5ab61, rgba(245, 97, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c90d0d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:nth-child(2):hover, button:nth-child(2):focus {
+  outline: none;
+  background-color: #abf561;
+  background-image: radial-gradient(ellipse at top right, #61f561, rgba(171, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #6bc90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:nth-child(2):active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+button:last-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  background-color: #f5ab61;
+  background-image: radial-gradient(ellipse at top right, #f5f561, rgba(245, 171, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c96b0d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:last-child:hover, button:last-child:focus {
+  outline: none;
+  background-color: #61f561;
+  background-image: radial-gradient(ellipse at top right, #61f5ab, rgba(97, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #0dc90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:last-child:active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body style="background-image: url('background2.png');">
+<div class="jumbotron text-center">
+  <h1>TIC TAC TOE</h1>
+  <p>Have Fun In Playing TIC TAC TOE</p>
+  <label for="ex2"><a href="#about" style="width:50%;height:50px"><button type="button" class="btn btn-info btn-lg"><h6 class='big' style="color:white">About Website</h6></button><br><br></a>
+  
+</div>
+<div class="container">
+<table align="center">
+<div class="form-group row">
+      <div class="col-xs-3">
+        <table>
+        <tr>
+	<tr>
+          <div class="text-center">
+             <form action="page_one.html">
+		<label for="ex2"><button id="btn1" onmouseover="showMore1()" class="btn btn-info"><br><h6>Play Two Player Game</h6><br></button><br><br>
+              </form>
+           </div>
+        </tr><br><br>
+        <tr>
+          <div class="text-center">
+              <form action="page_two.html">
+                <label for="ex2"><button id="btn2" onmouseover="showMore2()" class="btn btn-info"><br><h6>Play With System</h6><br></button><br><br>
+              </form>
+	  </div>
+        </tr>
+        </tr>
+        </table>
+      </div>
+</div>
+</table>
+</div>
+<br><br>
+<script>
+function showMore1(){
+    document.getElementById("btn1").innerHTML = "<br><h6>Play Two Player Game >>></h6><br>";
+}
+function showMore2(){
+    document.getElementById("btn2").innerHTML = "<br><h6>Play With System >>></h6><br>";
+}
+</script>
+<footer>
+<div class="jumbotron text-center footer">
+  <h6><a name="about"><h3><u>About</u></h6><br>This website provides you to play TIC TAC TOE game in Play Two Player Game and Play With System options.It is developed by Y.V.RAJKUMAR using HTML,CSS,Javascript and Bootstrap.<br><br><h6>Contact E-mail: <u>yvenkatarajkumar@gmail.com</u></h6></a></h3> 
+</div>
+</footer>
+</body>
+</html>
