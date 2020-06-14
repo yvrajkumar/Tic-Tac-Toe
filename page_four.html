@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TIC TAC TOE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+.multi-button {
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: 0 2rem 1rem -1rem #123;
+}
+
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  font: 2rem/1 monospace;
+  margin: 0;
+  overflow: hidden;
+  padding: 1rem 1.25rem;
+  position: relative;
+  top: 0;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+  background-color: #f561ab;
+  background-image: radial-gradient(ellipse at top right, #f56161, rgba(245, 97, 171, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c90d6b;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:hover, button:focus {
+  outline: none;
+  background-color: #f5f561;
+  background-image: radial-gradient(ellipse at top right, #abf561, rgba(245, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c9c90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+button:first-child, button:last-child {
+  border-radius: 1rem;
+}
+button:first-child {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+button:nth-child(2) {
+  background-color: #f56161;
+  background-image: radial-gradient(ellipse at top right, #f5ab61, rgba(245, 97, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c90d0d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:nth-child(2):hover, button:nth-child(2):focus {
+  outline: none;
+  background-color: #abf561;
+  background-image: radial-gradient(ellipse at top right, #61f561, rgba(171, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #6bc90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:nth-child(2):active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+button:last-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  background-color: #f5ab61;
+  background-image: radial-gradient(ellipse at top right, #f5f561, rgba(245, 171, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #c96b0d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:last-child:hover, button:last-child:focus {
+  outline: none;
+  background-color: #61f561;
+  background-image: radial-gradient(ellipse at top right, #61f5ab, rgba(97, 245, 97, 0) 67%);
+  box-shadow: 0 0.75rem 0 #0dc90d;
+  color: #123;
+  text-shadow: 0 -0.1em 0 rgba(221, 238, 255, 0.5);
+}
+button:last-child:active {
+  box-shadow: 0 0 0;
+  opacity: 0.67;
+  outline: none;
+  top: 0.75rem;
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body style="background-image: url('background2.png');">
+<div class="jumbotron text-center">
+  <h1>TIC TAC TOE</h1>
+  <p>Have Fun In Playing TIC TAC TOE</p> 
+  <h5 id="demo5"></h5><br>
+  <div class="btn-group" style="width:70%">
+ <button id="demo" type="button" class="btn btn-info btn-lg"><h5>Game is ongoing.</h5></button>
+ <div id="demo6"></div>
+</h1>
+</div>
+</div>
+<div class="container text-center" align="center">
+<div class="btn-group text-center" style="width:100%;height:80px">
+  <button id="id1" onclick="id1()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+  <button id="id2" onclick="id2()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:100px"><br>____<br></button>
+  <button id="id3" onclick="id3()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:100px"><br>____<br></button>
+</div><br>
+<div class="btn-group text-center" style="width:100%;height:80px">
+  <button id="id4" onclick="id4()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+  <button id="id5" onclick="id5()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+  <button id="id6" onclick="id6()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+</div><br>
+<div class="btn-group text-center" style="width:100%;height:80px">
+  <button id="id7" onclick="id7()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+  <button id="id8" onclick="id8()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+  <button id="id9" onclick="id9()" type="button" class="btn btn-info btn-lg btn-block text-center" style="width:100%;height:80px"><br>____<br></button>
+ </div>
+</div>
+<script>
+let win_condition=[[1,2,3],[1,4,7],[1,5,9],[2,5,8],[3,6,9],[3,5,7],[4,5,6],[7,8,9]];
+var player1_var="x",player2_var="o";
+let player1=[];
+let player2=[];
+var curr_player=player1_var;
+var end=0;
+var empty=[1,2,3,4,5,6,7,8,9];       
+function getParams(){
+var idx = document.URL.indexOf('?');
+var params = new Array();
+if (idx != -1) {
+var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+for (var i=0; i<pairs.length; i++){
+      nameVal = pairs[i].split('=');
+      params[nameVal[0]] = nameVal[1].replace(/\+/g, " "); 
+      params[nameVal[0]] = nameVal[1].replace(/\#more/g, ""); 
+   }
+}
+      return params;
+}
+params = getParams();
+var player1_name = unescape(params["player1"]);
+document.getElementById("demo5").innerHTML="'"+player1_name.toUpperCase()+"'"+" start the game.And your symbol is 'x'.";
+function check()
+{
+   var i,j,k,count,ind,temp=[],ele,t;
+   for(i=0;i<8;i++)
+   {
+      temp=[];
+      for(j=0;j<3;j++)
+      {
+         temp.push(win_condition[i][j]);
+      }
+      count=0;
+      for(j=0;j<3;j++)
+      {  t=0;
+         for(k=0;k<player1.length;k++)
+         {
+             if(temp[j]==player1[k])
+             {
+                 count=count+1;
+                 t=1;
+             }
+         }
+         if(t==0)
+         {
+            ele=temp[j];
+          }
+      }
+       if(count==2 && empty.indexOf(ele)>=0)
+        {
+            return empty.indexOf(ele);
+        }
+      temp=[];
+      for(j=0;j<3;j++)
+      {
+         temp.push(win_condition[i][j]);
+      }
+      count=0;
+      for(j=0;j<3;j++)
+      {  t=0;
+         for(k=0;k<player2.length;k++)
+         {
+             if(temp[j]==player2[k])
+             {
+                 count=count+1;
+                 t=1;
+             }
+         }
+         if(t==0)
+         {
+            ele=temp[j];
+          }
+      }
+       if(count==2 && empty.indexOf(ele)>=0)
+        {
+            return empty.indexOf(ele);
+        }
+    
+    
+    }
+    return -1;  
+
+
+
+
+}  
+function id1() {
+  id1 = function(){};
+  empty.splice(empty.indexOf(1),1);
+  document.getElementById("id1").innerHTML = curr_player;
+  if(curr_player==player1_var)
+  {
+  	player1.push(1);
+    curr_player=player2_var;
+    var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+		id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+   
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+    
+  }
+  else
+  {
+  	player2.push(1);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+                     if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+
+  }
+  
+}
+function id2() {
+  id2 = function(){};
+  empty.splice(empty.indexOf(2),1);
+  document.getElementById("id2").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  {
+  	player1.push(2);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+      }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+  	player2.push(2);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+             
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+
+  }
+}
+function id3() {
+  id3 = function(){};
+  empty.splice(empty.indexOf(3),1);
+  document.getElementById("id3").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  {
+  	player1.push(3);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+  	player2.push(3);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+              
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id4() {
+  id4 = function(){};
+  empty.splice(empty.indexOf(4),1);
+  document.getElementById("id4").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  {
+  	player1.push(4);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+             
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+  	player2.push(4);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id5() {
+  id5 = function(){};
+  empty.splice(empty.indexOf(5),1);
+  document.getElementById("id5").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  { 
+    	player1.push(5);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+               
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  { 
+    	player2.push(5);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id6() {
+  id6 = function(){};
+  empty.splice(empty.indexOf(6),1);
+  document.getElementById("id6").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  { 
+    	player1.push(6);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+             
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  { 
+    	player2.push(6);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+           
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id7() {
+  id7 = function(){};
+  empty.splice(empty.indexOf(7),1);
+  document.getElementById("id7").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  {  
+    player1.push(7);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+          if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+          
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+    player2.push(7);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+        
+         }
+          else
+	{
+           if(empty.length==0 )
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id8() {
+  id8 = function(){};
+  empty.splice(empty.indexOf(8),1);
+  document.getElementById("id8").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  { 
+    	player1.push(8);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+           
+         }
+          else
+	{
+           if(empty.length==0  && res==0)
+	   {
+              document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+    	player2.push(8);
+    curr_player=player1_var;
+    var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+    }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+             
+         }
+          else
+	{
+           if(empty.length==0  && res==0)
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+  }
+}
+function id9() {
+  id9 = function(){};
+  empty.splice(empty.indexOf(9),1);
+  document.getElementById("id9").innerHTML = curr_player;
+   if(curr_player==player1_var)
+  {
+    	player1.push(9);
+    curr_player=player2_var;
+     var i;
+    player1.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player1.indexOf(val) >= 0; 
+            }); 
+         if(res==1)
+         {
+           break;
+          }
+     }
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="'"+player1_name.toUpperCase()+"'"+" You Won The Game.Click 'More' button for more options.";
+                  document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+               
+         }
+          else
+	{
+           if(empty.length==0  && res==0)
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+           } 
+        }
+    
+    if(end==0)
+    {
+        var r=check();
+	if(r==-1)
+        {
+           r=Math.floor(Math.random() * empty.length);
+        }
+        if(empty[r]==1)
+	{
+	    id1();
+        }
+        else if(empty[r]==2)
+	{
+             id2();
+        }
+         else if(empty[r]==3)
+	{
+             id3();
+        }
+        else if(empty[r]==4)
+	{
+             id4();
+        }
+         else if(empty[r]==5)
+	{
+             id5();
+        }
+        else if(empty[r]==6)
+	{
+             id6();
+        }
+        else if(empty[r]==7)
+	{
+             id7();
+        }
+        else if(empty[r]==8)
+	{
+             id8();
+        }
+        else if(empty[r]==9)
+	{
+             id9();
+        }
+    }
+   
+  }
+  else
+  {
+    	player2.push(9);
+    curr_player=player1_var;
+     var i;
+    player2.sort();
+    for(i=0;i<8;i++)
+    {
+    	 res = win_condition[i].every(function(val) { 
+                return player2.indexOf(val) >= 0; 
+            });
+         if(res==1)
+         {
+           break;
+          }
+    } 
+         if(res)
+         {
+         	document.getElementById("demo").innerHTML ="System Won The Game.Click 'More' button for more options.";
+                document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+                id1 = function(){};id2 = function(){};id3 = function(){};id4 = function(){};id5 = function(){};id6 = function(){};id7 = function(){};id8 = function()                {};id9 = function(){};
+                
+         }
+          else
+	{
+           if(empty.length==0  && res==0)
+	   {
+               document.getElementById("demo").innerHTML ="Game is draw.Click 'More' button for more options.";
+               document.getElementById("demo6").innerHTML ='<a href="#more"><button type="button" style="width:100%" class="btn btn-info btn-lg" onclick="more()">More...</button></a>';
+               
+           } 
+        }
+    
+  }
+}
+function more()
+{
+document.getElementById("demo4").innerHTML ='<button type="button" class="btn btn-info btn-lg" onclick="reload()">Restart Game.</button><br> ';
+               document.getElementById("demo2").innerHTML =' <form action="page_two.html"><button type="submit" class="btn btn-info" align="center">Start System Game With New Player.</button><br></form>';
+                document.getElementById("demo3").innerHTML =' <form action="page_one.html"><button type="submit" class="btn btn-info" align="center" style="width:50%" >Play Two Players Game.</button><br></form>';
+}
+function reload()
+{
+location.reload();
+}
+</script>
+<br><br>
+<a name="more">
+<div class="container" align="center">
+<div id="demo4"  align="center"></div><br>
+<div id="demo2"  align="center" ></div><br>
+<div id="demo3"  align="center" ></div><br>
+</div>
+</a>
+</body>
+</html>
